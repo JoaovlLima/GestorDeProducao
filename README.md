@@ -90,33 +90,54 @@ Facilitar a utilização da plataforma para gestores e operadores de chão de f�
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Análises de Risco" alt="Typing SVG" /></a>
 
-1. **Atrasos no Desenvolvimento: Riscos de Complexidade e Mudança de Requisitos:** O desenvolvimento de uma plataforma de enquetes interativas envolve várias funcionalidades interdependentes, como o sistema de login/cadastro, criação de enquetes, e funcionalidades de votação. O mal gerenciamento do tempo e a subestimação da complexidade técnica podem resultar em atrasos significativos, especialmente se surgirem mudanças nos requisitos ou dificuldades técnicas inesperadas, como a necessidade de ajustes em bibliotecas externas ou problemas de desempenho em consultas ao banco de dados.
-   
-   **Mitigação:**
-Planejamento Detalhado e Metas Curto-Prazo: Defina claramente os requisitos desde o início, documentando-os de forma detalhada. Crie um cronograma com marcos bem definidos e revisões periódicas.
-Gestão de Mudanças: Implemente um processo formal de controle de mudanças, onde qualquer nova solicitação de alteração deve ser discutida e aprovada antes de ser incorporada ao projeto.
-Divisão do Desenvolvimento: Divida o desenvolvimento em pequenas entregas incrementais. Cada funcionalidade deve ser desenvolvida, testada e integrada em ciclos curtos.
-Buffer para Imprevistos: Alocar tempo extra no cronograma para lidar com problemas técnicos ou mudanças inesperadas.
-Ferramentas de Monitoramento: Utilize ferramentas de gestão de projetos, como Jira ou Trello, para acompanhar o progresso e manter o controle das tarefas.
+## Análise de Riscos
 
-3. **Desafios de Integração: Riscos de Inconsistência e Sincronização Entre Frontend e Backend:** A integração entre o frontend (React/Next.js) e o backend (Node.js) pode enfrentar desafios significativos, especialmente em relação ao fluxo de autenticação e à manipulação das enquetes e votos. A comunicação entre o frontend e as APIs precisa ser sincronizada de maneira eficiente, especialmente na gestão de sessões, autenticação JWT e atualização de dados em tempo real, para garantir uma experiência de usuário fluida.
-   
-   **Mitigação:**
-Padronização de APIs: Garanta que as APIs estejam bem documentadas e sigam padrões consistentes, como o uso de REST ou GraphQL. Isso facilita a integração e a comunicação entre frontend e backend.
-Testes Automatizados: Implemente testes automatizados para o frontend e o backend. Testes de integração garantirão que os endpoints da API estejam funcionando corretamente e que a comunicação com o frontend seja sincronizada.
-Gestão de Sessões: Utilize um sistema de gestão de sessão robusto, como JWT com renovação automática de tokens, garantindo que a autenticação funcione corretamente e sem problemas de sincronização.
-Simulações de Cenários de Uso: Execute simulações de diferentes cenários de interação entre frontend e backend para garantir que a manipulação de enquetes e votos aconteça sem inconsistências.
-WebSockets ou SSE (Server-Sent Events): Para atualizações de dados em tempo real, considere usar WebSockets ou SSE, que permitem manter o frontend sincronizado com as atualizações feitas no backend.
+### 1. Riscos Técnicos
 
-3. **Segurança dos Dados: Vulnerabilidades em Autenticação, Proteção de Votos e Privacidade de Usuários:** A segurança dos dados é uma preocupação central em plataformas interativas. Com a funcionalidade de login/cadastro, é fundamental garantir que as senhas dos usuários sejam armazenadas com segurança, que a autenticação seja robusta (ex: usando JWT) e que as enquetes e votos sejam protegidos contra manipulação externa (como múltiplos votos fraudulentos ou ataques de injeção). Além disso, dados pessoais dos usuários, como e-mails, devem ser protegidos contra vazamentos.
-   
-   **Mitigação:**
-Criptografia de Senhas: Armazene as senhas dos usuários utilizando algoritmos de hash seguros, como bcrypt ou Argon2, e implemente políticas de senha forte.
-Autenticação Segura (JWT): Use tokens JWT com expiração curta e renovações controladas. Assegure-se de usar HTTPS para a troca segura de tokens e dados sensíveis.
-Proteção contra Votos Fraudulentos: Implemente restrições para impedir múltiplos votos por usuário, como limitar um voto por IP, ou usar cookies/sessões junto ao JWT para garantir unicidade. Também é útil usar mecanismos de validação, como captchas, para evitar automação de votos.
-Proteção contra Ataques de Injeção: Valide e sanitize todas as entradas de usuários para proteger a aplicação contra SQL injection e XSS. Use bibliotecas e frameworks que oferecem proteção contra essas vulnerabilidades, como o mongoose (MongoDB) e express-validator.
-Anonimização de Dados: Para garantir a privacidade dos usuários, anonimize dados sensíveis nas enquetes, limitando o acesso a informações pessoais apenas para o necessário.
-Auditoria e Logs: Implemente mecanismos de auditoria e logs para monitorar atividades suspeitas, como tentativas de acesso não autorizado ou votos suspeitos, e responda rapidamente a ameaças.
+| **Risco**                                          | **Impacto** | **Probabilidade**  | **Mitigação**                                                              |
+| ---------------------------------------------------| ----------- | ------------------ | -------------------------------------------------------------------------- |
+| **Desempenho do MongoDB com grandes volumes**       | Alto        | Média              | Otimização de queries e testes de estresse.                                |
+| **Incompatibilidade entre versões de bibliotecas**  | Médio       | Baixa              | Gerenciamento de dependências com Maven/Gradle.                            |
+| **Integração futura com IoT**                       | Alto        | Média              | Arquitetura modular e uso de APIs padrão.                                  |
+| **Falta de experiência com MongoDB**                | Médio       | Média              | Treinamento da equipe em NoSQL e boas práticas.                            |
+
+### 2. Riscos de Gerenciamento
+
+| **Risco**                                          | **Impacto** | **Probabilidade**  | **Mitigação**                                                              |
+| ---------------------------------------------------| ----------- | ------------------ | -------------------------------------------------------------------------- |
+| **Atrasos no cronograma**                          | Alto        | Alta               | Monitoramento regular e priorização de funcionalidades.                    |
+| **Falta de comunicação clara na equipe**           | Médio       | Média              | Reuniões diárias e uso de ferramentas de gestão.                           |
+| **Mudanças nos requisitos**                        | Alto        | Alta               | Controle formal de mudanças e atualização do cronograma.                   |
+
+### 3. Riscos Operacionais
+
+| **Risco**                                          | **Impacto** | **Probabilidade**  | **Mitigação**                                                              |
+| ---------------------------------------------------| ----------- | ------------------ | -------------------------------------------------------------------------- |
+| **Interrupções na produção durante a implantação**  | Alto        | Média              | Implantação em fases e treinamento antecipado.                             |
+| **Resistência ao novo sistema**                    | Médio       | Alta               | Treinamentos e suporte contínuo aos operadores.                            |
+| **Erros operacionais devido à complexidade da UI**  | Médio       | Média              | Desenvolvimento focado em usabilidade e testes de UX.                      |
+
+### 4. Riscos de Segurança
+
+| **Risco**                                          | **Impacto** | **Probabilidade**  | **Mitigação**                                                              |
+| ---------------------------------------------------| ----------- | ------------------ | -------------------------------------------------------------------------- |
+| **Falhas de segurança nos dados de produção**       | Alto        | Média              | Criptografia, controle de acesso e auditorias.                             |
+| **Perda de dados no MongoDB**                      | Alto        | Baixa              | Backups regulares e plano de recuperação de desastres.                     |
+| **Ataques cibernéticos**                           | Alto        | Baixa              | Autenticação forte, criptografia e testes de segurança.                    |
+
+### 5. Riscos Financeiros
+
+| **Risco**                                          | **Impacto** | **Probabilidade**  | **Mitigação**                                                              |
+| ---------------------------------------------------| ----------- | ------------------ | -------------------------------------------------------------------------- |
+| **Aumento de custos de desenvolvimento**           | Médio       | Alta               | Gestão rigorosa de escopo e orçamento.                                     |
+| **Investimento em tecnologias sem valor imediato**  | Médio       | Média              | Foco em funcionalidades críticas e análise de retorno.                     |
+
+### 6. Riscos Legais
+
+| **Risco**                                          | **Impacto** | **Probabilidade**  | **Mitigação**                                                              |
+| ---------------------------------------------------| ----------- | ------------------ | -------------------------------------------------------------------------- |
+| **Não conformidade com regulamentos**              | Alto        | Baixa              | Revisão periódica de conformidade com normas (LGPD).                       |
+| **Penalidades por falhas de compliance**           | Alto        | Baixa              | Auditorias de conformidade e correções rápidas.                            |
 
 <br><br><br><br><br>
 
