@@ -85,10 +85,8 @@ Relevantes:
 Garantir que o sistema seja escalável e possa ser integrado com sensores IoT no futuro.
 Facilitar a utilização da plataforma para gestores e operadores de chão de fábrica.
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Cronograma" alt="Typing SVG" /></a>
 
-
-<br><br><br><br><br>
+<br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Análises de Risco" alt="Typing SVG" /></a>
 
@@ -124,22 +122,13 @@ Auditoria e Logs: Implemente mecanismos de auditoria e logs para monitorar ativi
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Recursos" alt="Typing SVG"/></a>
 
-**Equipe:**
-- 1 Gerente de Projetos
-- 3 Desenvolvedores Full-Stack (Node.js, React e Next)
-- 2 Designer UI/UX
-- 1 Administrador de Banco de Dados
-- 1 Especialista em Segurança
 
 **Tecnologias:**
-- **Node.js** (Backend)
-- **React e Next** (Frontend)
+- **Java** (Front / back)
 - **MongoDB** (Banco de Dados)
-- **JWT** (Autenticação)
 - **Git/GitHub** (Controle de Versão)
 
 **Ferramentas de Gestão:**
-- Trello para gerenciamento de tarefas
 - Slack para comunicação interna
 - Figma para design de interfaces
 - Mermaid para montagem dos diagramas
@@ -150,47 +139,64 @@ Auditoria e Logs: Implemente mecanismos de auditoria e logs para monitorar ativi
 
 ```mermaid
 classDiagram
-    class Usuario {
+    class Adm{
         +int id
         +string nome
-        +string email
         +string senha
-        +string cidade
-        +string fotoDePerfil
+    }
+    class Operador {
+        +int Re
+        +string nome
+        +int turno
+        +string senha
+        +get
         +post()
         +put()
         +delete()
     }
 
-    class Enquete {
+    class Maquina {
         +int id
-        +string título
-        +string[] opções
-        +string descrição
-        +enum categoria
-        +string imagem
-        +date dataDeCriação
-        +int usuarioId
+        +int linha
+        +string tipo
+        +double capacidadePorMin
+        +string estado
+        +int idProduto
         +get()
         +post()
         +put()
         +delete()
     }
 
-    class Votacao {
+    class Produto {
         +int id
-        +int enqueteId
-        +int usuarioId
-        +string opçãoVotada
-        +date dataQueVotou
+        +string nome
+        +double tempoProduzirKg
+        +int quantidadeMaterias
         +get()
         +post()
         +put()
         +delete()
     }
 
-    Usuario "1" -- "0..*" Enquete : "cria"
-    Enquete "1" -- "0..*" Votacao : "possui"
+    class Producao {
+        +int id
+        +int idMaquina 
+        +double quantidadeProd
+        +double tempoProd
+        +int ReOperador
+        +date data
+        +get()
+        +post()
+    }
+
+    Operador "1" -- "0..*" Producao : "cria"
+    Adm "1" -- "0..*" Operador : "cria"
+    Adm "1" -- "0..*" Maquina : "cria"
+    Adm "1" -- "0..*" Produto : "cria"
+    Producao "1" -- "0..*" Operador : "possui"
+    Producao "1" -- "0..*" Maquina : "possui"
+    Maquina "1" -- "0..*" Produto : "possui"
 ```
 <br><br><br><br><br>
 
