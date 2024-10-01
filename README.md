@@ -87,36 +87,7 @@ Facilitar a utilização da plataforma para gestores e operadores de chão de f�
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Cronograma" alt="Typing SVG" /></a>
 
-```mermaid
-gantt
-    title Cronograma do Projeto de Enquete
-    dateFormat  YYYY-MM-DD
 
-    section Semana 1-2: Definição dos Requisitos e Configuração do Ambiente
-    Reunião inicial          :a1, 2024-09-10, 3d
-    Configuração do ambiente :a2, 2024-09-13, 4d
-    Definição das entidades  :a3, 2024-09-17, 3d
-    Criação de wireframes    :a4, 2024-09-20, 4d
-
-    section Semana 3-4: Desenvolvimento do Backend e API
-    Desenvolvimento da API   :b1, 2024-09-25, 4d
-    Rotas CRUD para enquetes :b2, 2024-09-29, 5d
-    Testes iniciais do backend :b3, 2024-10-04, 5d
-
-    section Semana 5-6: Desenvolvimento do Frontend
-    Criação do frontend      :c1, 2024-10-09, 4d
-    Integração com a API     :c2, 2024-10-13, 4d
-    Implementação da autenticação :c3, 2024-10-17, 6d
-
-    section Semana 7-8: Testes e Ajustes Finais
-    Testes de integração     :d1, 2024-10-23, 4d
-    Funcionalidades adicionais :d2, 2024-10-27, 4d
-    Testes de desempenho e segurança :d3, 2024-10-31, 6d
-
-    section Semana 9: Finalização e Entrega
-    Revisão final e documentação :e1, 2024-11-06, 2d
-    Apresentação e entrega    :e2, 2024-11-08, 2d
-```
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Análises de Risco" alt="Typing SVG" /></a>
