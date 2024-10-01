@@ -277,7 +277,6 @@ flowchart TD
   <table style="width: 100%">
     <tbody>
       <tr align=center>
-    
         <th><strong> João Victor de Lima </br> JoaovlLima </strong></th>
       </tr>
       <tr align=center>
