@@ -1,62 +1,89 @@
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Contexto do Projeto" alt="Typing SVG" /></a>
-### Contexto Inicial
-**Sistema de Enquetes Online:**
-O sistema será uma **plataforma interativa** onde os usuários poderão **criar, votar e acompanhar os resultados** de enquetes em tempo real. Será **simples e intuitivo**, com uma interface amigável. O sistema será projetado para atender a diferentes cenários de uso, desde enquetes amplas até específicas.
+Sistema de Gestão de Produção Industrial
+     O sistema visa gerenciar e monitorar o processo de produção em uma linha de montagem industrial, proporcionando controle completo sobre o fluxo de materiais, eficiência produtiva e alocação de recursos. Ele ajudará a garantir que todas as etapas do processo produtivo sejam seguidas corretamente, com um foco em maximizar o uso eficiente de máquinas e operadores, além de gerar relatórios de desempenho.
 
-<br>
-<br>
-<br>
-<p align="center">
-   <img src="/src/logo/logo.png" alt="logo" width=250px>
-</p>
-
-<p align="center">
-   <img src="https://img.shields.io/badge/API-PRODUZINDO-red?style=for-the-badge" alt="backend" />
-  <img src="https://img.shields.io/badge/Documentação-FEITA-blue?style=for-the-badge" alt="documentação" />
-  <img src="https://img.shields.io/badge/Protótipos-FEITO-blue?style=for-the-badge" alt="mobile" />
-  <img src="https://img.shields.io/badge/Frontend-PRODUZINDO-red?style=for-the-badge" alt="site" />
-</p>
-<hr>
-<br>
 <br><br><br>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Plataforma de Enquetes" alt="Typing SVG" /></a>
+<p align="center"> <img src="/src/logo/logo.png" alt="logo" width=250px> </p> <p align="center"> <img src="https://img.shields.io/badge/API-PRODUZINDO-red?style=for-the-badge" alt="backend" /> <img src="https://img.shields.io/badge/Documentação-FEITA-blue?style=for-the-badge" alt="documentação" /> <img src="https://img.shields.io/badge/Protótipos-FEITO-blue?style=for-the-badge" alt="mobile" /> <img src="https://img.shields.io/badge/Frontend-PRODUZINDO-red?style=for-the-badge" alt="site" /> </p> <hr> <br><br><br><br> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Gestão+de+Produção+Industrial" alt="Typing SVG" />
 
-## Apresentação do Projeto: Desenvolvimento de Aplicação sobre Plataforma de Enquetes Interativas
+Apresentação do Projeto: Sistema de Gestão de Produção Industrial
+Visão Geral do Projeto
+Objetivo: O sistema permitirá o controle completo da produção em uma linha de montagem, desde o cadastro de máquinas, operadores e produtos, até o monitoramento em tempo real de cada etapa do processo produtivo. Usaremos tecnologias modernas como Java, MongoDB e integrações com sensores industriais, visando uma solução robusta, escalável e eficiente.
 
-### Visão Geral do Projeto
-**Objetivo:**
-Desenvolver uma aplicação web sobre uma plataforma interativa de enquetes, na qual os usuários poderão criar, votar e acompanhar os resultados. Nós utilizaremos tecnologias modernas e práticas de mercado, garantindo segurança, escalabilidade e uma experiência de usuário fluida por meio do React, Next, Node.js, MongoDB, e JWT, criando uma aplicação completa e funcional que pode ser utilizada no mundo real.
+Por que este Projeto? Este sistema foi idealizado para otimizar a eficiência operacional em indústrias de manufatura e transformação. Ele oferece visibilidade detalhada de todo o processo produtivo, permitindo ajustes em tempo real para evitar gargalos e melhorar a produtividade. O foco é fornecer uma solução que atenda desde pequenas indústrias até grandes corporações, garantindo uma operação produtiva eficiente e transparente.
 
-**Por Que Este Projeto?**
-A nossa empresa, dedicada a inovar no campo da interação digital, está em processo de criação de uma plataforma de enquetes interativas chamada Votefy. Esse projeto visa proporcionar uma experiência envolvente e dinâmica para os usuários, permitindo que eles participem e criem enquetes de maneira intuitiva e interativa. Com o objetivo de transformar a forma como as pessoas coletam e analisam opiniões, estamos desenvolvendo uma solução tecnológica avançada que ofereça uma interface amigável e funcionalidades robustas. 
-<br><br><br><br><br>
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Escopo" alt="Typing SVG" /></a>
+<br><br><br><br><br> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=100
 
-A plataforma de enquetes será desenvolvida utilizando Node.js para o backend e React e Next.js para o frontend, com MongoDB como banco de dados e JWT para autenticação. A solução visa proporcionar uma experiência de usuário intuitiva, com recursos para criação, visualização, atualização e exclusão de enquetes.
-<br><br><br><br><br>
+Escopo do Sistema
+1. Cadastro de Máquinas, Operadores e Produtos:
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Objetivos SMART" alt="Typing SVG" /></a>
+Máquinas: O sistema permitirá o cadastro de cada máquina ou equipamento utilizado no processo produtivo. Para cada máquina, serão armazenadas informações como:
 
-- **Específicos:**
-  1. Criar uma API RESTful com Node.js que suporte operações CRUD (Criar, Ler, Atualizar, Deletar) para enquetes, até o final da segunda semana.
-  2. Implementar um sistema de autenticação de usuários utilizando JWT até o final da terceira semana.
-  3. Configurar e integrar o banco de dados MongoDB, permitindo o armazenamento seguro e eficiente das enquetes dos usuários, até o final da quarta semana.
-  4. Desenvolver a interface de usuário em React e Next, permitindo a criação e gerenciamento de enquetes, até o final da quinta semana.
-  5. Integrar um sistema de notificações em tempo real para alertar os usuários sobre atualizações ou novos votos em suas enquetes, até o final da sexta semana.
-  6. Implementar testes automatizados de integração para garantir a consistência das operações CRUD, até o final da sétima semana.
+Tipo de máquina.
+Capacidade de produção.
+Estado atual (ativa, em manutenção, ociosa).
+Histórico de uso e manutenções.
+Operadores: Cadastro de operadores que trabalham na linha de produção, com informações sobre:
 
-- **Mensuráveis:**
-  1. Alcançar uma base de 100 usuários registrados na plataforma dentro do primeiro mês após o lançamento.
-  2. Garantir que 90% das operações CRUD sejam concluídas com sucesso e sem erros no primeiro mês de operação.
-  3. Obter uma avaliação de satisfação do usuário de pelo menos 4,5 em uma escala de 1 a 5 após o segundo mês de uso da plataforma.
-  4. Assegurar que a aplicação suporte pelo menos 500 acessos simultâneos sem degradação de performance.
- 
-- **Relevantes:**
-  1. Garantir que a plataforma seja escalável e segura para suportar o crescimento constante, garantindo que a infraestrutura cloud possa ser ajustada conforme necessário.
-  2. Desenvolver uma experiência de usuário fluida e intuitiva, garantindo que a interface de criação de enquetes seja fácil de usar tanto em dispositivos móveis quanto em desktops.
-  3. Introduzir um sistema de feedback constante, permitindo que os usuários sugiram melhorias e relatem problemas diretamente da interface da plataforma.    
- <br><br><br><br><br>
+Turnos.
+Habilidades (quais máquinas o operador pode manusear).
+Histórico de produtividade.
+Produtos: Cadastro de produtos ou componentes que serão fabricados, com os seguintes dados:
+
+Nome do produto.
+Especificações técnicas.
+Quantidade de materiais necessários.
+Tempo estimado de produção por unidade.
+2. Controle de Fluxo de Produção e Etapas do Processo Produtivo:
+
+Etapas do Processo: Cada produto terá um fluxo de produção definido por etapas. O sistema permitirá a definição dessas etapas, associando máquinas e operadores específicos a cada uma.
+
+Exemplo de Etapas: Corte, montagem, pintura, embalagem.
+
+Monitoramento: O sistema acompanhará o andamento do processo de produção em cada etapa, registrando:
+
+Tempo gasto.
+Status das máquinas e operadores (em operação, ocioso, em manutenção).
+3. Geração de Relatórios de Eficiência, Uso de Máquinas e Paradas de Produção:
+
+Relatório de Eficiência Produtiva: O sistema gerará relatórios para medir o desempenho das linhas de produção, incluindo:
+
+Quantidade de produtos fabricados.
+Taxa de aproveitamento dos materiais e desperdício.
+Relatório de Uso de Máquinas: Detalhes sobre o uso das máquinas, como:
+
+Horas de operação.
+Tempo ocioso ou de manutenção.
+Eficiência de produção por máquina.
+Relatório de Paradas de Produção: Inclui:
+
+Duração e causa das paradas.
+Ações corretivas.
+Relatórios Personalizados: O sistema permitirá a geração de relatórios por período, por produto, linha de produção ou operador.
+
+4. Interface Gráfica para Gerenciar a Linha de Produção e Alocar Operadores:
+
+Painel de Controle: A interface gráfica oferecerá um painel onde o gestor da produção poderá visualizar o status atual de todas as linhas de produção em tempo real, incluindo:
+
+Status de máquinas e operadores.
+Visualização das etapas de produção.
+Alocação de Operadores: A interface permitirá a alocação manual ou automática de operadores para diferentes máquinas ou etapas do processo, com base em suas habilidades e disponibilidade.
+
+Visualização do Fluxo de Produção: Será possível acompanhar o progresso do produto desde a primeira etapa até a finalização, facilitando a detecção de gargalos.
+
+Objetivos SMART
+Específicos:
+
+Criar o sistema de cadastro de máquinas, operadores e produtos até a segunda semana.
+Implementar o monitoramento das etapas de produção até a quarta semana.
+Desenvolver relatórios personalizados de produção até a sexta semana.
+Mensuráveis:
+
+Gerar relatórios de eficiência com precisão mínima de 90%.
+Obter a produção de 100 produtos diários com 95% de máquinas em operação.
+Relevantes:
+
+Garantir que o sistema seja escalável e possa ser integrado com sensores IoT no futuro.
+Facilitar a utilização da plataforma para gestores e operadores de chão de fábrica.
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Cronograma" alt="Typing SVG" /></a>
 
@@ -150,7 +177,7 @@ Auditoria e Logs: Implemente mecanismos de auditoria e logs para monitorar ativi
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Classe" alt="Typing SVG" /></a>
 
-mermaid
+```mermaid
 classDiagram
     class Usuario {
         +int id
@@ -193,11 +220,11 @@ classDiagram
 
     Usuario "1" -- "0..*" Enquete : "cria"
     Enquete "1" -- "0..*" Votacao : "possui"
-
+```
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Uso" alt="Typing SVG" /></a>
-mermaid
+```mermaid
 flowchart TD
     U[Usuário] -->|Criar Conta| A(Registrar-se)
     A -->|Fazer Login| B(Fazer Login)
@@ -217,11 +244,11 @@ flowchart TD
     
     U -->|Editar Perfil| M(Atualizar Informações de Usuário)
     U -->|Excluir Conta| N(Excluir Conta)
-
+````
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Fluxo" alt="Typing SVG" /></a>
-mermaid
+````mermaid
 flowchart TD
     Start([Início]) --> |Acessa Plataforma| A[Fazer Login]
     A -->|Login Sucesso| B[Dashboard de Enquetes]
@@ -242,7 +269,7 @@ flowchart TD
     K -->|Confirmar Alterações| F
     
     End([Fim])
-
+````
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Identidade Visual" alt="Typing SVG" /></a>
