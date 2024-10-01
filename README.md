@@ -3,7 +3,7 @@ Sistema de Gestão de Produção Industrial
 
 <br><br><br>
 
-<p align="center"> <img src="/src/loho/logo.png" alt="logo" width=250px> </p> <p align="center"> <img src="https://img.shields.io/badge/API-PRODUZINDO-red?style=for-the-badge" alt="backend" /> <img src="https://img.shields.io/badge/Documentação-FEITA-blue?style=for-the-badge" alt="documentação" /> <img src="https://img.shields.io/badge/Protótipos-FEITO-blue?style=for-the-badge" alt="mobile" /> <img src="https://img.shields.io/badge/Frontend-PRODUZINDO-red?style=for-the-badge" alt="site" /> </p> <hr> <br><br><br><br> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Gestão+de+Produção+Industrial" alt="Typing SVG" />
+<p align="center"> <img src="/src/logo.png" alt="logo" width=250px> </p> <p align="center"> <img src="https://img.shields.io/badge/API-PRODUZINDO-red?style=for-the-badge" alt="backend" /> <img src="https://img.shields.io/badge/Documentação-FEITA-blue?style=for-the-badge" alt="documentação" /> <img src="https://img.shields.io/badge/Protótipos-FEITO-blue?style=for-the-badge" alt="mobile" /> <img src="https://img.shields.io/badge/Frontend-PRODUZINDO-red?style=for-the-badge" alt="site" /> </p> <hr> <br><br><br><br> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Gestão+de+Produção+Industrial" alt="Typing SVG" />
 
 Apresentação do Projeto: Sistema de Gestão de Produção Industrial
 Visão Geral do Projeto
