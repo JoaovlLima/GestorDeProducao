@@ -60,7 +60,7 @@ A plataforma de enquetes será desenvolvida utilizando Node.js para o backend e 
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Cronograma" alt="Typing SVG" /></a>
 
-mermaid
+```mermaid
 gantt
     title Cronograma do Projeto de Enquete
     dateFormat  YYYY-MM-DD
@@ -89,7 +89,7 @@ gantt
     section Semana 9: Finalização e Entrega
     Revisão final e documentação :e1, 2024-11-06, 2d
     Apresentação e entrega    :e2, 2024-11-08, 2d
-
+```
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Análises de Risco" alt="Typing SVG" /></a>
