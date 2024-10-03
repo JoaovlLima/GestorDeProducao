@@ -181,7 +181,7 @@ classDiagram
         +int linha
         +string tipo
         +double capacidadePorMin
-        +string estado
+        +enum estado
         +int idProduto
         +get()
         +post()
