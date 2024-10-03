@@ -168,7 +168,7 @@ classDiagram
     class Operador {
         +int Re
         +string nome
-        +int turno
+        +enum turno
         +string senha
         +get
         +post()
