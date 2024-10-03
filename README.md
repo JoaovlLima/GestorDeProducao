@@ -224,49 +224,71 @@ classDiagram
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Uso" alt="Typing SVG" /></a>
 ```mermaid
 flowchart TD
-    U[Usuário] -->|Criar Conta| A(Registrar-se)
-    A -->|Fazer Login| B(Fazer Login)
-    B -->|Acessar Plataforma| C(Plataforma de Enquetes)
+    L[Tela de Login] -->|Fazer Login| A(Acessar Sistema de Produção)
     
-    C -->|Criar Enquete| D(Criar Nova Enquete)
-    D -->|Adicionar Opções| E(Adicionar Opções à Enquete)
+    A -->|Cadastrar Máquina| B(Cadastro de Máquinas)
+    A -->|Cadastrar Operador| C(Cadastro de Operadores)
+    A -->|Cadastrar Produto| D(Cadastro de Produtos)
     
-    C -->|Votar em Enquete| F(Votar em Enquete Existente)
-    F -->|Selecionar Opção| G(Escolher Opção e Confirmar Voto)
+    B -->|Adicionar Detalhes| B1(Tipo, Capacidade, Estado, Histórico de Manutenção)
+    C -->|Adicionar Informações| C1(Turno, Habilidades, Histórico de Produtividade)
+    D -->|Especificar Produto| D1(Nome, Especificações, Materiais, Tempo de Produção)
     
-    C -->|Acompanhar Resultados| H(Visualizar Resultados das Enquetes)
+    A -->|Definir Etapas do Processo Produtivo| E(Etapas do Processo)
+    E -->|Associar Máquinas e Operadores| E1(Definir Corte, Montagem, Pintura, Embalagem)
     
-    I[Criador da Enquete] -->|Gerenciar Enquetes| J(Gerenciar Enquetes dos Usuários)
-    J -->|Editar Enquete| K(Editar Detalhes da Enquete)
-    J -->|Excluir Enquete| L(Excluir Enquete)
+    A -->|Monitorar Processo Produtivo| F(Monitoramento em Tempo Real)
+    F -->|Registrar Tempo| F1(Tempo Gasto em Cada Etapa)
+    F -->|Visualizar Status| F2(Status de Máquinas e Operadores)
     
-    U -->|Editar Perfil| M(Atualizar Informações de Usuário)
-    U -->|Excluir Conta| N(Excluir Conta)
+    A -->|Gerar Relatórios| G(Geração de Relatórios)
+    G -->|Relatório de Eficiência| G1(Eficiência Produtiva, Aproveitamento, Desperdício)
+    G -->|Relatório de Uso de Máquinas| G2(Horas de Operação, Tempo Ocioso, Eficiência)
+    G -->|Relatório de Paradas| G3(Causas, Duração, Ações Tomadas)
+    
+    A -->|Gerenciar Linha de Produção| H(Interface Gráfica)
+    H -->|Visualizar Status| H1(Status das Máquinas e Operadores)
+    H -->|Alocar Operadores| H2(Alocação Manual ou Automática)
+    H -->|Ajustar Alocação| H3(Ajuste em Tempo Real)
+    H -->|Visualizar Fluxo de Produção| H4(Visualização Gráfica do Fluxo de Produção)
+
 ````
 <br><br><br><br><br>
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Diagrama de Fluxo" alt="Typing SVG" /></a>
 ````mermaid
 flowchart TD
-    Start([Início]) --> |Acessa Plataforma| A[Fazer Login]
-    A -->|Login Sucesso| B[Dashboard de Enquetes]
-    A -->|Login Falhou| C[Exibir Erro de Login]
-    C -->|Tentar Novamente| A
+    A[Tela de Login] -->|Fazer Login| B{Usuário Autenticado?}
+    B -- Sim --> C[Acessar Sistema de Produção]
+    B -- Não --> D[Mostrar Mensagem de Erro]
     
-    B -->|Criar Nova Enquete| D[Criar Enquete]
-    D -->|Inserir Título, Opções e Descrição| E[Confirmar Criação]
-    E -->|Sucesso| F[Exibir Enquete no Dashboard]
+    C --> E{Escolher Ação}
+    E -->|Cadastrar Máquina| F[Cadastrar Máquinas]
+    E -->|Cadastrar Operador| G[Cadastrar Operadores]
+    E -->|Cadastrar Produto| H[Cadastrar Produtos]
+    E -->|Definir Etapas| I[Definir Etapas do Processo]
+    E -->|Monitorar Produção| J[Monitorar Processo Produtivo]
+    E -->|Gerar Relatórios| K[Gerar Relatórios]
+    E -->|Gerenciar Linha de Produção| L[Gerenciar Linha de Produção]
+
+    F --> M[Adicionar Detalhes da Máquina]
+    G --> N[Adicionar Informações do Operador]
+    H --> O[Especificar Produto]
+    I --> P[Associar Máquinas e Operadores]
     
-    B -->|Votar em Enquete| G[Selecionar Enquete]
-    G -->|Escolher Opção| H[Confirmar Voto]
-    H -->|Voto Registrado| I[Atualizar Resultados]
+    J --> Q[Registrar Tempo em Cada Etapa]
+    J --> R[Visualizar Status de Máquinas e Operadores]
     
-    B -->|Acompanhar Resultados| J[Visualizar Resultados em Tempo Real]
+    K --> S{Selecionar Tipo de Relatório}
+    S -->|Eficiência Produtiva| T[Gerar Relatório de Eficiência]
+    S -->|Uso de Máquinas| U[Gerar Relatório de Uso]
+    S -->|Paradas| V[Gerar Relatório de Paradas]
     
-    B -->|Gerenciar Enquetes| K[Editar ou Excluir Enquete]
-    K -->|Confirmar Alterações| F
-    
-    End([Fim])
+    L --> W[Visualizar Status das Linhas de Produção]
+    L --> X[Alocar Operadores]
+    L --> Y[Ajustar Alocação em Tempo Real]
+    L --> Z[Visualizar Fluxo de Produção]
+
 ````
 <br><br><br><br><br>
 
