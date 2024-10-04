@@ -1,10 +1,10 @@
 package com.example;
 
-import com.example.Views.CadastroView;
+import com.example.Views.LoginView;
 
 public class Main {
     public static void main(String[] args) {
-        CadastroView cadastroView = new CadastroView();
-        cadastroView.setVisible(true);
+        LoginView loginView = new LoginView();
+        loginView.setVisible(true);
     }
 }

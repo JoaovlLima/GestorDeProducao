@@ -1,46 +1,52 @@
 package com.example.Views;
 
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;      
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import com.example.Controllers.OperadorController;
+import com.example.Controllers.ProdutoController;
+import com.example.Controllers.MaquinaController;
 
-public class AdmView extends JFrame{
-  
-        private JTextField operadorNomeField;
-        private JPasswordField operadorSenhaField;
-        private JTextField operadorReField;
-        private JTextField operadorTurnoField;
-        private JButton criarOperadorButton;
+public class AdmView extends JFrame {
+
+    private JTabbedPane jTPane;
     
-        // Construtor e layout da tela omitidos para simplificação
-    
-        public String getOperadorNome() {
-            return operadorNomeField.getText();
-        }
-    
-        public String getOperadorSenha() {
-            return new String(operadorSenhaField.getPassword());
-        }
-    
-        public int getOperadorRe() {
-            return Integer.parseInt(operadorReField.getText());
-        }
-    
-        public int getOperadorTurno() {
-            return Integer.parseInt(operadorTurnoField.getText());
-        }
-    
-        public void addCreateOperadorListener(ActionListener listener) {
-            criarOperadorButton.addActionListener(listener);
-        }
-    
-        public void mostrarMensagemErro(String mensagem) {
-            JOptionPane.showMessageDialog(this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    
-        public void mostrarMensagemSucesso(String mensagem) {
-            JOptionPane.showMessageDialog(this, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        }
+    public AdmView() {
+        super();
+
+        jTPane = new JTabbedPane();
+        add(jTPane);
+        // criandos as tabs
+        // tab1 carros
+        OperadorView tab1 = new OperadorView();
+        jTPane.add("Operadores", tab1);
+        ProdutoView tab2 = new ProdutoView();
+        jTPane.add("Produto", tab2);
+        MaquinaView tab3 = new MaquinaView();
+        jTPane.add("Maquina", tab3);
+        setBounds(100, 100, 600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // jTPane.addChangeListener(e -> {
+        //     tab2.atualizarVendasCli();
+        //     tab2.atualizarVendasCar();
+        // });
     }
+
+    // métodos para tornar a janela visível
+    public void run() {
+        this.setVisible(true);
+    }
+
+        
+    }
+
+    
+
+   
+
+   
+
+        
 
