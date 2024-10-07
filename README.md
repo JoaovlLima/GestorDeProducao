@@ -166,28 +166,31 @@ classDiagram
         +string senha
     }
     class Operador {
-        +int Re
-        +string nome
-        +enum turno
-        +string senha
-        +get
-        +post()
-        +put()
-        +delete()
-    }
+    +int Re
+    +string nome
+    +enum turno
+    +string senha
+    +List<Maquina> maquinasOperadas  // Máquinas que ele já operou
+    +double produtividadeMedia  // Produtividade média do operador
+    +get()
+    +post()
+    +put()
+    +delete()
+}
 
     class Maquina {
-        +int id
-        +int linha
-        +string tipo
-        +double capacidadePorMin
-        +enum estado
-        +int idProduto
-        +get()
-        +post()
-        +put()
-        +delete()
-    }
+    +int id
+    +int linha
+    +string tipo
+    +double capacidadePorMin
+    +enum estado 
+    +int idProduto
+    +string historicoManutencao 
+    +get()
+    +post()
+    +put()
+    +delete()
+}
 
     class Produto {
         +int id
@@ -201,15 +204,39 @@ classDiagram
     }
 
     class Producao {
-        +int id
-        +int idMaquina 
-        +double quantidadeProd
-        +double tempoProd
-        +int ReOperador
-        +date data
-        +get()
-        +post()
-    }
+    +int id
+    +int idMaquina 
+    +double quantidadeProd
+    +double tempoProd
+    +int ReOperador
+    +date data
+    +enum status   // Adiciona status de produção
+    +double eficiencia  // Calcula a eficiência da produção
+    +get()
+    +post()
+}
+
+    class Manutencao {
+    +int id
+    +int idMaquina
+    +string descricaoProblema
+    +string acaoCorretiva
+    +date dataManutencao
+    +int idOperadorResponsavel
+    +get()
+    +post()
+    +put()
+}
+    class Turno {
+    +int id
+    +enum periodo
+    +int ReOperador
+    +int idMaquina
+    +date inicioTurno
+    +date fimTurno
+    +get()
+    +post()
+}
 
     Operador "1" -- "0..*" Producao : "cria"
     Adm "1" -- "0..*" Operador : "cria"
@@ -226,15 +253,20 @@ classDiagram
 flowchart TD
     L[Tela de Login] -->|Fazer Login| A(Acessar Sistema de Produção)
     
-    A -->|Cadastrar Máquina| B(Cadastro de Máquinas)
-    A -->|Cadastrar Operador| C(Cadastro de Operadores)
-    A -->|Cadastrar Produto| D(Cadastro de Produtos)
+    %% Verificação de tipo de usuário (Admin ou Operador Comum)
+    A -->|Verificar Permissão| P{Usuário é Admin?}
+    
+    %% Permissões exclusivas do Admin
+    P -->|Sim| B(Cadastro de Máquinas)
+    P -->|Sim| C(Cadastro de Operadores)
+    P -->|Sim| D(Cadastro de Produtos)
     
     B -->|Adicionar Detalhes| B1(Tipo, Capacidade, Estado, Histórico de Manutenção)
     C -->|Adicionar Informações| C1(Turno, Habilidades, Histórico de Produtividade)
     D -->|Especificar Produto| D1(Nome, Especificações, Materiais, Tempo de Produção)
     
-    A -->|Definir Etapas do Processo Produtivo| E(Etapas do Processo)
+    %% Funções acessíveis a todos os usuários
+    P -->|Não| E(Etapas do Processo)
     E -->|Associar Máquinas e Operadores| E1(Definir Corte, Montagem, Pintura, Embalagem)
     
     A -->|Monitorar Processo Produtivo| F(Monitoramento em Tempo Real)
@@ -251,6 +283,7 @@ flowchart TD
     H -->|Alocar Operadores| H2(Alocação Manual ou Automática)
     H -->|Ajustar Alocação| H3(Ajuste em Tempo Real)
     H -->|Visualizar Fluxo de Produção| H4(Visualização Gráfica do Fluxo de Produção)
+
 
 ````
 <br><br><br><br><br>
