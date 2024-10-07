@@ -14,9 +14,11 @@ import java.util.List;
 
 public class OperadorController {
     private MongoDatabase mb;
+    private Maquina maquina;
 
     public OperadorController() {
         this.mb = ConnectionFactory.getDatabase();
+        maquina = new Maquina();
     }
 
     // Método para listar todos os operadores
@@ -146,4 +148,32 @@ public class OperadorController {
             return null; // Retorna null se o operador não for encontrado
         }
     }
+
+    // Método para buscar todas as máquinas
+    public List<Maquina> listarMaquinas() {
+        List<Maquina> maquinas = new ArrayList<>();
+        MongoCollection<Document> colecao = mb.getCollection("maquinas");
+
+        try (MongoCursor<Document> cursor = colecao.find().iterator()) {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+
+                // Lê o estado diretamente como String
+                String estado = doc.getString("estado");
+
+                Maquina maquina = new Maquina(
+                        doc.getInteger("idMaquina"),
+                        doc.getInteger("linha"),
+                        doc.getString("tipo"),
+                        doc.getDouble("capacidadePorMin"),
+                        estado,  // Passa o estado como String
+                        doc.getInteger("idProduto"),
+                        doc.getString("historicoManutencao")
+                );
+                maquinas.add(maquina);
+            }
+        }
+        return maquinas;
+    }
+
 }

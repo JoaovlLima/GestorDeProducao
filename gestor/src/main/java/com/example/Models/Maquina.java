@@ -18,5 +18,8 @@ public class Maquina {
     private int idProduto;
     private String historicoManutencao;
 
-    
+    @Override
+    public String toString() {
+        return tipo + " (Linha: " + linha + ")";
+    }   
 }
