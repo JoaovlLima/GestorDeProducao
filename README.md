@@ -166,28 +166,31 @@ classDiagram
         +string senha
     }
     class Operador {
-        +int Re
-        +string nome
-        +enum turno
-        +string senha
-        +get
-        +post()
-        +put()
-        +delete()
-    }
+    +int Re
+    +string nome
+    +enum turno {MANHA, TARDE, NOITE}
+    +string senha
+    +List<Maquina> maquinasOperadas  // Máquinas que ele já operou
+    +double produtividadeMedia  // Produtividade média do operador
+    +get()
+    +post()
+    +put()
+    +delete()
+}
 
     class Maquina {
-        +int id
-        +int linha
-        +string tipo
-        +double capacidadePorMin
-        +enum estado
-        +int idProduto
-        +get()
-        +post()
-        +put()
-        +delete()
-    }
+    +int id
+    +int linha
+    +string tipo
+    +double capacidadePorMin
+    +enum estado {OPERANDO, PARADA, MANUTENCAO}
+    +int idProduto
+    +string historicoManutencao 
+    +get()
+    +post()
+    +put()
+    +delete()
+}
 
     class Produto {
         +int id
@@ -201,15 +204,39 @@ classDiagram
     }
 
     class Producao {
-        +int id
-        +int idMaquina 
-        +double quantidadeProd
-        +double tempoProd
-        +int ReOperador
-        +date data
-        +get()
-        +post()
-    }
+    +int id
+    +int idMaquina 
+    +double quantidadeProd
+    +double tempoProd
+    +int ReOperador
+    +date data
+    +enum status {EM_ANDAMENTO, FINALIZADA}  // Adiciona status de produção
+    +double eficiencia  // Calcula a eficiência da produção
+    +get()
+    +post()
+}
+
+    class Manutencao {
+    +int id
+    +int idMaquina
+    +string descricaoProblema
+    +string acaoCorretiva
+    +date dataManutencao
+    +int idOperadorResponsavel
+    +get()
+    +post()
+    +put()
+}
+    class Turno {
+    +int id
+    +enum periodo {MANHA, TARDE, NOITE}
+    +int ReOperador
+    +int idMaquina
+    +date inicioTurno
+    +date fimTurno
+    +get()
+    +post()
+}
 
     Operador "1" -- "0..*" Producao : "cria"
     Adm "1" -- "0..*" Operador : "cria"
