@@ -4,6 +4,9 @@ import javax.swing.*;
 
 import com.example.Controllers.OperadorController;
 import com.example.Models.Operador;
+import com.example.Views.Adm.AdmView;
+import com.example.Views.Operador.JanelaPrincipal;
+import com.example.Views.Operador.OperadorHomeView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -62,7 +65,7 @@ public class LoginView extends JFrame {
                     JOptionPane.showMessageDialog(null, "Login bem-sucedido!\n"+
                     "Seja Bem vindo "+operador.getNome());
                     dispose();
-                    //abrir view
+                    abrirOpview();;
                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
@@ -75,6 +78,11 @@ public class LoginView extends JFrame {
     private void abrirAdmView() {
         AdmView cadastroView = new AdmView();
         cadastroView.run(); // Tornar visível a tela de cadastro
+    }
+    private void abrirOpview(){
+       JanelaPrincipal janelaPrincipal = new JanelaPrincipal();
+       janelaPrincipal.run();
+        
     }
 
 

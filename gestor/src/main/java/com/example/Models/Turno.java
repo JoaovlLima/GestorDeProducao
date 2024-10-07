@@ -5,21 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class Operador {
-    private int re;
-    private String nome;
-    private Turno turno;
-    private String senha;
-    private List<Maquina> maquinasOperadas;
-    private double produtividadeMedia;
+public class Turno {
+    private int id;
+    private Periodo periodo;
+    private int reOperador;
+    private int idMaquina;
+    private Date inicioTurno;
+    private Date fimTurno;
 
-    public enum Turno {
+    public enum Periodo {
         MANHA,
         TARDE,
         NOITE

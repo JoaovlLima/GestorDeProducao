@@ -5,18 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class Maquina {
+public class Manutencao {
+    private int id;
     private int idMaquina;
-    private int linha;
-    private String tipo;
-    private double capacidadePorMin;
-    private String estado;
-    private int idProduto;
-    private String historicoManutencao;
-
-    
+    private String descricaoProblema;
+    private String acaoCorretiva;
+    private Date dataManutencao;
+    private int idOperadorResponsavel;
 }

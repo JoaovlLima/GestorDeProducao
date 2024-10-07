@@ -5,24 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+import java.util.Date;
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 public class Producao {
-    private int idProducao;
+    private int id;
     private int idMaquina;
     private double quantidadeProd;
     private double tempoProd;
-    private int ReOperador;
-    private String data;
+    private int reOperador;
+    private Date data;
+    private StatusProducao status;
+    private double eficiencia;
 
-    public double calcularEficiência(Maquina maquina) {
-        double capacidadeEsperada = maquina.getCapacidadePorMin() * (tempoProd / 60);
-        return (quantidadeProd / capacidadeEsperada) * 100; 
-    }
-
-    public boolean foiConcluida() {
-        return quantidadeProd > 0 && tempoProd > 0;
+    public enum StatusProducao {
+        EM_ANDAMENTO,
+        FINALIZADA
     }
 }
