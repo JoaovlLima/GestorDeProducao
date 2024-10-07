@@ -168,7 +168,7 @@ classDiagram
     class Operador {
     +int Re
     +string nome
-    +enum turno {MANHA, TARDE, NOITE}
+    +enum turno
     +string senha
     +List<Maquina> maquinasOperadas  // Máquinas que ele já operou
     +double produtividadeMedia  // Produtividade média do operador
@@ -183,7 +183,7 @@ classDiagram
     +int linha
     +string tipo
     +double capacidadePorMin
-    +enum estado {OPERANDO, PARADA, MANUTENCAO}
+    +enum estado 
     +int idProduto
     +string historicoManutencao 
     +get()
@@ -210,7 +210,7 @@ classDiagram
     +double tempoProd
     +int ReOperador
     +date data
-    +enum status {EM_ANDAMENTO, FINALIZADA}  // Adiciona status de produção
+    +enum status   // Adiciona status de produção
     +double eficiencia  // Calcula a eficiência da produção
     +get()
     +post()
@@ -229,7 +229,7 @@ classDiagram
 }
     class Turno {
     +int id
-    +enum periodo {MANHA, TARDE, NOITE}
+    +enum periodo
     +int ReOperador
     +int idMaquina
     +date inicioTurno
