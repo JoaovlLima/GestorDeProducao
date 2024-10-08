@@ -1,11 +1,14 @@
 package com.example.Views.Adm;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.example.Controllers.MaquinaController;
 import com.example.Models.Maquina;
+import com.example.Views.LoginView;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -16,15 +19,19 @@ public class MaquinaView extends JPanel {
 
     private JTextField txtIdMaquina, txtLinha, txtTipo, txtCapacidadePorMin, txtIdProduto, txtHistoricoManutencao;
     private JComboBox<String> cbEstado;
-    private JButton btnCadastrar, btnEditar, btnRemover;
+    private JButton btnCadastrar, btnEditar, btnRemover, btnVoltar;
 
     public MaquinaView() {
         setLayout(new BorderLayout());
         maquinaController = new MaquinaController();
+        setBackground(new Color(240, 255, 240)); // Fundo verde claro
 
         // Painel de Cadastro de Máquinas
-        JPanel painelCadastro = new JPanel(new GridLayout(7, 2, 10, 10));
+        JPanel painelCadastro = new JPanel(new GridLayout(8, 2, 10, 10));
+        painelCadastro.setBackground(new Color(255, 255, 255)); // Fundo branco
+        painelCadastro.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(0, 128, 0), 2), "Cadastro de Máquinas", TitledBorder.CENTER, TitledBorder.TOP, new Font("Arial", Font.BOLD, 14), new Color(0, 128, 0))); // Borda verde
 
+        // Labels e Campos
         JLabel lblIdMaquina = new JLabel("ID da Máquina:");
         txtIdMaquina = new JTextField();
         JLabel lblLinha = new JLabel("Linha:");
@@ -34,20 +41,23 @@ public class MaquinaView extends JPanel {
         JLabel lblCapacidadePorMin = new JLabel("Capacidade por Min:");
         txtCapacidadePorMin = new JTextField();
         JLabel lblEstado = new JLabel("Estado:");
-        
+
         // Criação do JComboBox para o estado
         String[] opcoesEstado = {"OPERANDO", "PARADA", "MANUTENCAO"};
         cbEstado = new JComboBox<>(opcoesEstado);
-        
+
         JLabel lblIdProduto = new JLabel("ID do Produto:");
         txtIdProduto = new JTextField();
         JLabel lblHistoricoManutencao = new JLabel("Histórico de Manutenção:");
         txtHistoricoManutencao = new JTextField();
 
-        btnCadastrar = new JButton("Cadastrar Máquina");
-        btnEditar = new JButton("Editar Máquina");
-        btnRemover = new JButton("Remover Máquina");
+        // Botões com cor e estilo
+        btnCadastrar = createButton("Cadastrar Máquina");
+        btnEditar = createButton("Editar Máquina");
+        btnRemover = createButton("Remover Máquina");
+        btnVoltar = createButton("Voltar");
 
+        // Adicionando componentes ao painel de cadastro
         painelCadastro.add(lblIdMaquina);
         painelCadastro.add(txtIdMaquina);
         painelCadastro.add(lblLinha);
@@ -62,17 +72,24 @@ public class MaquinaView extends JPanel {
         painelCadastro.add(txtIdProduto);
         painelCadastro.add(lblHistoricoManutencao);
         painelCadastro.add(txtHistoricoManutencao);
-        
+
         painelCadastro.add(new JLabel()); // Espaço vazio
         painelCadastro.add(btnCadastrar);
         painelCadastro.add(btnEditar);
         painelCadastro.add(btnRemover);
+        painelCadastro.add(btnVoltar);
 
         // Tabela para listar as máquinas
         String[] colunas = {"ID da Máquina", "Linha", "Tipo", "Capacidade por Min", "Estado", "ID do Produto", "Histórico de Manutenção"};
         modeloTabela = new DefaultTableModel(colunas, 0);
         tabelaMaquinas = new JTable(modeloTabela);
+        tabelaMaquinas.setFillsViewportHeight(true);
+        tabelaMaquinas.setBackground(new Color(255, 255, 255)); // Fundo da tabela
+        tabelaMaquinas.setForeground(new Color(0, 128, 0)); // Cor do texto
+        tabelaMaquinas.setGridColor(new Color(0, 128, 0)); // Cor da grade
+
         JScrollPane scrollPane = new JScrollPane(tabelaMaquinas);
+        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 0), 2)); // Borda verde para a tabela
 
         // Adicionando componentes ao painel principal
         add(painelCadastro, BorderLayout.NORTH);
@@ -170,19 +187,30 @@ public class MaquinaView extends JPanel {
                 }
             }
         });
+
+    }
+
+    private JButton createButton(String text) {
+        JButton button = new JButton(text);
+        button.setBackground(new Color(0, 128, 0)); // Cor de fundo verde
+        button.setForeground(Color.WHITE); // Texto branco
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Espaçamento interno
+        button.setFont(new Font("Arial", Font.BOLD, 12)); // Fonte em negrito
+        return button;
     }
 
     private void carregarMaquinas() {
         List<Maquina> maquinas = maquinaController.listarMaquinas();
         for (Maquina maquina : maquinas) {
             modeloTabela.addRow(new Object[]{
-                maquina.getIdMaquina(), 
-                maquina.getLinha(), 
-                maquina.getTipo(),
-                maquina.getCapacidadePorMin(), 
-                maquina.getEstado(), 
-                maquina.getIdProduto(),
-                maquina.getHistoricoManutencao()
+                    maquina.getIdMaquina(),
+                    maquina.getLinha(),
+                    maquina.getTipo(),
+                    maquina.getCapacidadePorMin(),
+                    maquina.getEstado(),
+                    maquina.getIdProduto(),
+                    maquina.getHistoricoManutencao()
             });
         }
     }
@@ -192,8 +220,8 @@ public class MaquinaView extends JPanel {
         txtLinha.setText("");
         txtTipo.setText("");
         txtCapacidadePorMin.setText("");
+        cbEstado.setSelectedIndex(0);
         txtIdProduto.setText("");
         txtHistoricoManutencao.setText("");
-        cbEstado.setSelectedIndex(0);
     }
 }

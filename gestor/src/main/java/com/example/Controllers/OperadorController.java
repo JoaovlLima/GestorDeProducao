@@ -16,6 +16,10 @@ public class OperadorController {
     private MongoDatabase mb;
     private Maquina maquina;
 
+    public void setDatabase(MongoDatabase database) {
+        this.mb = database;
+    }
+
     public OperadorController() {
         this.mb = ConnectionFactory.getDatabase();
         maquina = new Maquina();

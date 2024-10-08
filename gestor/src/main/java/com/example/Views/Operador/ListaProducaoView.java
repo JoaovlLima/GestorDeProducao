@@ -13,8 +13,9 @@ public class ListaProducaoView extends JFrame {
 
     public ListaProducaoView(ProducaoController producaoController) {
         this.producaoController = producaoController;
+        
         setTitle("Lista de Produções");
-        setSize(700, 400); // Aumenta o tamanho para acomodar mais colunas
+        setSize(700, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         

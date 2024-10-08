@@ -11,7 +11,7 @@ import com.example.Controllers.MaquinaController;
 public class AdmView extends JFrame {
 
     private JTabbedPane jTPane;
-    
+   
     public AdmView() {
         super();
 

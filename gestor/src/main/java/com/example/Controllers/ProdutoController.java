@@ -14,7 +14,13 @@ import org.bson.Document;
 public class ProdutoController {
     private MongoDatabase mb;
 
-    public ProdutoController(){
+    // Método para injetar a instância mockada do banco de dados
+    public void setDatabase(MongoDatabase database) {
+        this.mb = database;
+    }
+
+    // Construtor padrão que usa a conexão real
+    public ProdutoController() {
         this.mb = ConnectionFactory.getDatabase();
     }
 
@@ -37,9 +43,9 @@ public class ProdutoController {
         return produtos;
     }
 
-    public void criarProduto(int id, String nome, double tempoProduzirKg, int quantidadeMaterias) {
+    public void criarProduto(int idMaquina, String nome, double tempoProduzirKg, int quantidadeMaterias) {
         // Criar objeto Produto
-        Produto produto = new Produto(id, nome, tempoProduzirKg, quantidadeMaterias);
+        Produto produto = new Produto(idMaquina, nome, tempoProduzirKg, quantidadeMaterias);
         
         // Criar documento para armazenar no MongoDB
         Document produtoDoc = new Document("idProduto", produto.getIdProduto())
@@ -47,11 +53,8 @@ public class ProdutoController {
                 .append("tempoProduzirKg", produto.getTempoProduzirKg())
                 .append("quantidadeMaterias", produto.getQuantidadeMaterias());
 
-        // Obter conexão com o banco de dados
-        MongoDatabase database = ConnectionFactory.getDatabase();
-
-        // Obter a coleção "produtos"
-        MongoCollection<Document> collection = database.getCollection("produtos");
+        // Obter a coleção "produtos" usando a instância injetada
+        MongoCollection<Document> collection = mb.getCollection("produtos");
 
         // Inserir o documento na coleção
         collection.insertOne(produtoDoc);

@@ -12,7 +12,11 @@ import org.bson.Document;
 import com.mongodb.client.model.Filters;
 
 public class MaquinaController {
-    private MongoDatabase mb;
+    public MongoDatabase mb;
+   
+    public void setDatabase(MongoDatabase database) {
+        this.mb = database;
+    }
 
     public MaquinaController() {
         this.mb = ConnectionFactory.getDatabase();

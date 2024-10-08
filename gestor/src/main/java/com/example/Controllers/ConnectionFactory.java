@@ -8,7 +8,12 @@ public class ConnectionFactory {
     private static MongoClient mongoClient;
     private static final String CONNECTION_STRING = "mongodb://localhost:27017"; // URL do MongoDB
     private static final String DATABASE_NAME = "GestorProducao"; // Nome do banco de dados
+    private static MongoDatabase database;
 
+    // Método para configurar um banco de dados mock
+    public static void setMockDatabase(MongoDatabase mockDatabase) {
+        database = mockDatabase;
+    }
     // Método para criar a conexão
     private static void createMongoClient() {
         if (mongoClient == null) {

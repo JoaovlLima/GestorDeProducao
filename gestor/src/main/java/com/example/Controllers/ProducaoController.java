@@ -5,6 +5,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+
 import com.mongodb.client.model.Filters;
 
 import java.util.ArrayList;
@@ -13,6 +15,10 @@ import java.util.List;
 
 public class ProducaoController {
     private MongoDatabase mb;
+
+    public void setDatabase(MongoDatabase database) {
+        this.mb = database;
+    }
 
     public ProducaoController() {
         this.mb = ConnectionFactory.getDatabase(); // Conexão com o banco de dados
@@ -45,8 +51,9 @@ public class ProducaoController {
 
     // Método para criar uma nova produção
     public void criarProducao(int idMaquina, double quantidadeProd, double tempoProd, int reOperador, Date data, Producao.StatusProducao status, double eficiencia) {
-        Document producaoDoc = new Document("id", gerarNovoId()) // Gerar um novo ID (você pode implementar sua lógica aqui)
-                .append("idMaquina", idMaquina)
+        MongoCollection<Document> collection = mb.getCollection("producoes");
+        
+        Document doc = new Document("idMaquina", idMaquina)
                 .append("quantidadeProd", quantidadeProd)
                 .append("tempoProd", tempoProd)
                 .append("reOperador", reOperador)
@@ -54,13 +61,13 @@ public class ProducaoController {
                 .append("status", status.name())
                 .append("eficiencia", eficiencia);
 
-        MongoCollection<Document> collection = mb.getCollection("producoes");
-        collection.insertOne(producaoDoc);
+        collection.insertOne(doc); // Este método deve ser void
     }
-
     // Método para atualizar uma produção
     public void atualizarProducao(int id, int idMaquina, double quantidadeProd, double tempoProd, int reOperador, Date data, Producao.StatusProducao status, double eficiencia) {
         MongoCollection<Document> collection = mb.getCollection("producoes");
+        
+        // Criar o documento que será atualizado
         Document producaoAtualizada = new Document()
                 .append("idMaquina", idMaquina)
                 .append("quantidadeProd", quantidadeProd)
@@ -69,10 +76,14 @@ public class ProducaoController {
                 .append("data", data)
                 .append("status", status.name())
                 .append("eficiencia", eficiencia);
-
-        collection.updateOne(Filters.eq("id", id), new Document("$set", producaoAtualizada));
+    
+        // Criar o filtro para a busca
+        Bson filter = Filters.eq("id", id);
+        
+        // Chamar o método updateOne
+        collection.updateOne(filter, new Document("$set", producaoAtualizada));
     }
-
+    
     // Método para remover uma produção
     public void removerProducao(int id) {
         MongoCollection<Document> collection = mb.getCollection("producoes");
