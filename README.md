@@ -324,7 +324,8 @@ flowchart TD
 
 ````
 <br><br><br><br><br>
-
+<p align="center"> <img src="/src/tests.png" alt="logo" width=250px> </p> <p align="center"> <img src="https://img.shields.io/badge/API-PRODUZINDO-red?style=for-the-badge" alt="backend" /> <img src="https://img.shields.io/badge/Documentação-FEITA-blue?style=for-the-badge" alt="documentação" /> <img src="https://img.shields.io/badge/Protótipos-FEITO-blue?style=for-the-badge" alt="mobile" />
+     <br><br><br><br><br>
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=440&size=22&pause=1000&color=38F77CFF&center=false&vCenter=false&repeat=false&width=435&lines=Identidade Visual" alt="Typing SVG" /></a>
 
 <p align="left">
