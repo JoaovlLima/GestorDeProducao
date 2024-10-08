@@ -1,14 +1,15 @@
 package com.example.Controllers;
 
 import com.example.Models.Maquina;
-import com.example.Controllers.ConnectionFactory;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bson.Document;
+import com.mongodb.client.model.Filters;
 
 public class MaquinaController {
     private MongoDatabase mb;
@@ -17,7 +18,7 @@ public class MaquinaController {
         this.mb = ConnectionFactory.getDatabase();
     }
 
-    // Método para buscar todas as máquinas
+    // Método para buscar todas as máquinas (já implementado)
     public List<Maquina> listarMaquinas() {
         List<Maquina> maquinas = new ArrayList<>();
         MongoCollection<Document> colecao = mb.getCollection("maquinas");
@@ -26,15 +27,12 @@ public class MaquinaController {
             while (cursor.hasNext()) {
                 Document doc = cursor.next();
 
-                // Lê o estado diretamente como String
-                String estado = doc.getString("estado");
-
                 Maquina maquina = new Maquina(
                         doc.getInteger("idMaquina"),
                         doc.getInteger("linha"),
                         doc.getString("tipo"),
                         doc.getDouble("capacidadePorMin"),
-                        estado,  // Passa o estado como String
+                        doc.getString("estado"),
                         doc.getInteger("idProduto"),
                         doc.getString("historicoManutencao")
                 );
@@ -44,29 +42,37 @@ public class MaquinaController {
         return maquinas;
     }
 
-    // Método para criar uma nova máquina
+    // Método para criar uma nova máquina (já implementado)
     public void criarMaquina(int id, int linha, String tipo, double capacidadePorMin, String estado, int idProduto, String historicoManutencao) {
-        // Criar objeto Maquina
-        Maquina maquina = new Maquina(id, linha, tipo, capacidadePorMin, estado, idProduto, historicoManutencao);
+        Document maquinaDoc = new Document("idMaquina", id)
+                .append("linha", linha)
+                .append("tipo", tipo)
+                .append("capacidadePorMin", capacidadePorMin)
+                .append("estado", estado)
+                .append("idProduto", idProduto)
+                .append("historicoManutencao", historicoManutencao);
 
-        // Criar documento para armazenar no MongoDB
-        Document maquinaDoc = new Document("idMaquina", maquina.getIdMaquina())
-                .append("linha", maquina.getLinha())
-                .append("tipo", maquina.getTipo())
-                .append("capacidadePorMin", maquina.getCapacidadePorMin())
-                .append("estado", maquina.getEstado())  // Agora é uma String
-                .append("idProduto", maquina.getIdProduto())
-                .append("historicoManutencao", maquina.getHistoricoManutencao());
-
-        // Obter a conexão com o banco de dados
-        MongoDatabase database = ConnectionFactory.getDatabase();
-
-        // Obter a coleção "maquinas"
-        MongoCollection<Document> collection = database.getCollection("maquinas");
-
-        // Inserir o documento na coleção
+        MongoCollection<Document> collection = mb.getCollection("maquinas");
         collection.insertOne(maquinaDoc);
+    }
 
-        System.out.println("Máquina criada e inserida no MongoDB: " + maquinaDoc.toJson());
+    // Método para atualizar uma máquina
+    public void atualizarMaquina(int idMaquina, int linha, String tipo, double capacidadePorMin, String estado, int idProduto, String historicoManutencao) {
+        MongoCollection<Document> collection = mb.getCollection("maquinas");
+        Document maquinaAtualizada = new Document()
+                .append("linha", linha)
+                .append("tipo", tipo)
+                .append("capacidadePorMin", capacidadePorMin)
+                .append("estado", estado)
+                .append("idProduto", idProduto)
+                .append("historicoManutencao", historicoManutencao);
+
+        collection.updateOne(Filters.eq("idMaquina", idMaquina), new Document("$set", maquinaAtualizada));
+    }
+
+    // Método para remover uma máquina
+    public void removerMaquina(int idMaquina) {
+        MongoCollection<Document> collection = mb.getCollection("maquinas");
+        collection.deleteOne(Filters.eq("idMaquina", idMaquina));
     }
 }

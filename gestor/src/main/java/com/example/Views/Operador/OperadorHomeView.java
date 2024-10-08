@@ -11,7 +11,7 @@ import java.util.List;
 public class OperadorHomeView extends JPanel {
     private MaquinaController maquinaController;
 
-    public OperadorHomeView() {
+    public OperadorHomeView(int reRecuperado) {
         setLayout(new BorderLayout());
         maquinaController = new MaquinaController();
 
@@ -29,14 +29,14 @@ public class OperadorHomeView extends JPanel {
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Margem ao redor dos blocos
 
         // Carregar máquinas na interface
-        carregarMaquinas(painelMaquinas);
+        carregarMaquinas(painelMaquinas, reRecuperado);
 
         // Adicionando o painel de máquinas ao centro da view
         add(scrollPane, BorderLayout.CENTER);
     }
 
     // Método para carregar as máquinas em blocos visuais
-    private void carregarMaquinas(JPanel painelMaquinas) {
+    private void carregarMaquinas(JPanel painelMaquinas, int reRecuperado) {
         List<Maquina> maquinas = maquinaController.listarMaquinas();
 
         for (Maquina maquina : maquinas) {
@@ -57,7 +57,7 @@ public class OperadorHomeView extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(null, "Máquina " + maquina.getTipo() + " selecionada com sucesso!");
-                    // Lógica adicional após a seleção da máquina, como iniciar a operação
+                    abrirProducao(reRecuperado, maquina.getIdMaquina()); 
                 }
             });
 
@@ -70,5 +70,9 @@ public class OperadorHomeView extends JPanel {
             painelMaquinas.add(blocoMaquina);
             painelMaquinas.add(Box.createRigidArea(new Dimension(0, 10))); // Espaçamento entre os blocos
         }
+    }
+    public void abrirProducao(int reRecuperado, int idMaquina){
+        ProducaoView producao = new ProducaoView(reRecuperado, idMaquina);
+        producao.run();
     }
 }

@@ -9,14 +9,14 @@ public class JanelaPrincipal extends JFrame {
 
     private JTabbedPane jTPane;
     
-    public JanelaPrincipal() {
+    public JanelaPrincipal(int reRecuperado) {
         super();
 
         jTPane = new JTabbedPane();
         add(jTPane);
         // criandos as tabs
         // tab1 carros
-        OperadorHomeView tab1 = new OperadorHomeView();
+        OperadorHomeView tab1 = new OperadorHomeView(reRecuperado);
         jTPane.add("Maquinas", tab1);
        
         setBounds(100, 100, 600, 600);

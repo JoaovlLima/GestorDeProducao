@@ -65,7 +65,7 @@ public class LoginView extends JFrame {
                     JOptionPane.showMessageDialog(null, "Login bem-sucedido!\n"+
                     "Seja Bem vindo "+operador.getNome());
                     dispose();
-                    abrirOpview();;
+                    abrirOpview(operador.getRe());;
                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
@@ -79,8 +79,8 @@ public class LoginView extends JFrame {
         AdmView cadastroView = new AdmView();
         cadastroView.run(); // Tornar visível a tela de cadastro
     }
-    private void abrirOpview(){
-       JanelaPrincipal janelaPrincipal = new JanelaPrincipal();
+    private void abrirOpview(int reRecuperado){
+       JanelaPrincipal janelaPrincipal = new JanelaPrincipal(reRecuperado);
        janelaPrincipal.run();
         
     }

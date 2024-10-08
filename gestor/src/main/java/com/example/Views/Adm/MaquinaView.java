@@ -14,6 +14,10 @@ public class MaquinaView extends JPanel {
     private JTable tabelaMaquinas;
     private DefaultTableModel modeloTabela;
 
+    private JTextField txtIdMaquina, txtLinha, txtTipo, txtCapacidadePorMin, txtIdProduto, txtHistoricoManutencao;
+    private JComboBox<String> cbEstado;
+    private JButton btnCadastrar, btnEditar, btnRemover;
+
     public MaquinaView() {
         setLayout(new BorderLayout());
         maquinaController = new MaquinaController();
@@ -22,25 +26,27 @@ public class MaquinaView extends JPanel {
         JPanel painelCadastro = new JPanel(new GridLayout(7, 2, 10, 10));
 
         JLabel lblIdMaquina = new JLabel("ID da Máquina:");
-        JTextField txtIdMaquina = new JTextField();
+        txtIdMaquina = new JTextField();
         JLabel lblLinha = new JLabel("Linha:");
-        JTextField txtLinha = new JTextField();
+        txtLinha = new JTextField();
         JLabel lblTipo = new JLabel("Tipo:");
-        JTextField txtTipo = new JTextField();
+        txtTipo = new JTextField();
         JLabel lblCapacidadePorMin = new JLabel("Capacidade por Min:");
-        JTextField txtCapacidadePorMin = new JTextField();
+        txtCapacidadePorMin = new JTextField();
         JLabel lblEstado = new JLabel("Estado:");
         
         // Criação do JComboBox para o estado
         String[] opcoesEstado = {"OPERANDO", "PARADA", "MANUTENCAO"};
-        JComboBox<String> cbEstado = new JComboBox<>(opcoesEstado);
+        cbEstado = new JComboBox<>(opcoesEstado);
         
         JLabel lblIdProduto = new JLabel("ID do Produto:");
-        JTextField txtIdProduto = new JTextField();
+        txtIdProduto = new JTextField();
         JLabel lblHistoricoManutencao = new JLabel("Histórico de Manutenção:");
-        JTextField txtHistoricoManutencao = new JTextField();
+        txtHistoricoManutencao = new JTextField();
 
-        JButton btnCadastrar = new JButton("Cadastrar Máquina");
+        btnCadastrar = new JButton("Cadastrar Máquina");
+        btnEditar = new JButton("Editar Máquina");
+        btnRemover = new JButton("Remover Máquina");
 
         painelCadastro.add(lblIdMaquina);
         painelCadastro.add(txtIdMaquina);
@@ -59,6 +65,8 @@ public class MaquinaView extends JPanel {
         
         painelCadastro.add(new JLabel()); // Espaço vazio
         painelCadastro.add(btnCadastrar);
+        painelCadastro.add(btnEditar);
+        painelCadastro.add(btnRemover);
 
         // Tabela para listar as máquinas
         String[] colunas = {"ID da Máquina", "Linha", "Tipo", "Capacidade por Min", "Estado", "ID do Produto", "Histórico de Manutenção"};
@@ -70,6 +78,9 @@ public class MaquinaView extends JPanel {
         add(painelCadastro, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
+        // Carregar máquinas na tabela ao iniciar a view
+        carregarMaquinas();
+
         // Ação do botão "Cadastrar Máquina"
         btnCadastrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -78,7 +89,7 @@ public class MaquinaView extends JPanel {
                     int linha = Integer.parseInt(txtLinha.getText());
                     String tipo = txtTipo.getText();
                     double capacidadePorMin = Double.parseDouble(txtCapacidadePorMin.getText());
-                    String estado = (String) cbEstado.getSelectedItem(); // Obtém a opção selecionada do JComboBox
+                    String estado = (String) cbEstado.getSelectedItem();
                     int idProduto = Integer.parseInt(txtIdProduto.getText());
                     String historicoManutencao = txtHistoricoManutencao.getText();
 
@@ -88,25 +99,77 @@ public class MaquinaView extends JPanel {
 
                     // Adiciona a máquina à tabela
                     modeloTabela.addRow(new Object[]{idMaquina, linha, tipo, capacidadePorMin, estado, idProduto, historicoManutencao});
-                    
-                    // Limpar os campos após o cadastro
-                    txtIdMaquina.setText("");
-                    txtLinha.setText("");
-                    txtTipo.setText("");
-                    txtCapacidadePorMin.setText("");
-                    cbEstado.setSelectedIndex(0); // Reseta o JComboBox para a primeira opção
-                    txtIdProduto.setText("");
-                    txtHistoricoManutencao.setText("");
-                    
+
+                    limparCampos();
+
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar máquina: " + ex.getMessage());
-                    System.out.println(ex);
                 }
             }
         });
 
-        // Carregar máquinas na tabela ao iniciar a view
-        carregarMaquinas();
+        // Ação do botão "Editar Máquina"
+        btnEditar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int selectedRow = tabelaMaquinas.getSelectedRow();
+                    if (selectedRow == -1) {
+                        JOptionPane.showMessageDialog(null, "Selecione uma máquina para editar.");
+                        return;
+                    }
+
+                    int idMaquina = Integer.parseInt(txtIdMaquina.getText());
+                    int linha = Integer.parseInt(txtLinha.getText());
+                    String tipo = txtTipo.getText();
+                    double capacidadePorMin = Double.parseDouble(txtCapacidadePorMin.getText());
+                    String estado = (String) cbEstado.getSelectedItem();
+                    int idProduto = Integer.parseInt(txtIdProduto.getText());
+                    String historicoManutencao = txtHistoricoManutencao.getText();
+
+                    // Atualiza a máquina no banco de dados
+                    maquinaController.atualizarMaquina(idMaquina, linha, tipo, capacidadePorMin, estado, idProduto, historicoManutencao);
+
+                    // Atualiza a linha selecionada na tabela
+                    modeloTabela.setValueAt(linha, selectedRow, 1);
+                    modeloTabela.setValueAt(tipo, selectedRow, 2);
+                    modeloTabela.setValueAt(capacidadePorMin, selectedRow, 3);
+                    modeloTabela.setValueAt(estado, selectedRow, 4);
+                    modeloTabela.setValueAt(idProduto, selectedRow, 5);
+                    modeloTabela.setValueAt(historicoManutencao, selectedRow, 6);
+
+                    JOptionPane.showMessageDialog(null, "Máquina atualizada com sucesso!");
+                    limparCampos();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao editar máquina: " + ex.getMessage());
+                }
+            }
+        });
+
+        // Ação do botão "Remover Máquina"
+        btnRemover.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int selectedRow = tabelaMaquinas.getSelectedRow();
+                    if (selectedRow == -1) {
+                        JOptionPane.showMessageDialog(null, "Selecione uma máquina para remover.");
+                        return;
+                    }
+
+                    int idMaquina = (int) modeloTabela.getValueAt(selectedRow, 0);
+
+                    // Remove a máquina do banco de dados
+                    maquinaController.removerMaquina(idMaquina);
+
+                    // Remove a linha da tabela
+                    modeloTabela.removeRow(selectedRow);
+
+                    JOptionPane.showMessageDialog(null, "Máquina removida com sucesso!");
+                    limparCampos();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover máquina: " + ex.getMessage());
+                }
+            }
+        });
     }
 
     private void carregarMaquinas() {
@@ -122,5 +185,15 @@ public class MaquinaView extends JPanel {
                 maquina.getHistoricoManutencao()
             });
         }
+    }
+
+    private void limparCampos() {
+        txtIdMaquina.setText("");
+        txtLinha.setText("");
+        txtTipo.setText("");
+        txtCapacidadePorMin.setText("");
+        txtIdProduto.setText("");
+        txtHistoricoManutencao.setText("");
+        cbEstado.setSelectedIndex(0);
     }
 }
